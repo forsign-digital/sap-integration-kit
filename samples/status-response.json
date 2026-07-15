@@ -1,0 +1,34 @@
+{
+  "operation": {
+    "name": "Contrato de Fornecimento 4500001234",
+    "status": "WaitingSignatures",
+    "stage": "Signature",
+    "createdAt": "2026-07-15T14:00:00",
+    "expirationDate": "2026-08-15T23:59:59",
+    "completedAt": null,
+    "progressCurrent": 1,
+    "progressTotal": 2
+  },
+  "members": [
+    {
+      "name": "Maria Compradora",
+      "email": "maria.compradora@empresa.com.br",
+      "role": null,
+      "order": 1,
+      "observer": false,
+      "status": "Completed",
+      "stage": "Done",
+      "completedAt": "2026-07-15T15:10:00"
+    },
+    {
+      "name": "Joao Fornecedor",
+      "email": "joao@fornecedor.com.br",
+      "role": null,
+      "order": 2,
+      "observer": false,
+      "status": "InProgress",
+      "stage": "Signature",
+      "completedAt": null
+    }
+  ]
+}

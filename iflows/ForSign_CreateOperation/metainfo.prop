@@ -1,0 +1,2 @@
+#Store metainfo properties
+description=Recebe payload canonico do SAP (S/4HANA ou SuccessFactors), faz upload do documento e cria a operacao de assinatura no ForSign.

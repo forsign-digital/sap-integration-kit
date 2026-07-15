@@ -1,0 +1,25 @@
+name: Feature request
+description: Suggest an improvement or a new integration scenario
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem would this solve?
+      description: e.g. "We need batch operation creation from SuccessFactors Integration Center"
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component
+      options:
+        - CPI iFlows
+        - ABAP client
+        - Fiori cockpit
+        - Documentation
+        - New component

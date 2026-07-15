@@ -1,0 +1,85 @@
+{
+  "externalId": "S4-4500001234",
+  "name": "Contrato de Fornecimento 4500001234",
+  "language": "pt-br",
+  "sequentialSigning": true,
+  "manualFinish": {
+    "hasManualFinish": false,
+    "date": "2026-08-15T23:59:59-03:00"
+  },
+  "optionalMessage": "<p>Documento gerado pelo SAP S/4HANA. Assine até a data limite.</p>",
+  "displayCover": true,
+  "document": {
+    "fileName": "contrato-4500001234.pdf",
+    "description": "Contrato de fornecimento aprovado no pedido 4500001234",
+    "contentBase64": "JVBERi0xLjcKJeLjz9MK... (PDF em base64)"
+  },
+  "signers": [
+    {
+      "name": "Ana Observadora",
+      "email": "compras@empresa.com.br",
+      "order": 0,
+      "observer": true
+    },
+    {
+      "name": "Maria Compradora",
+      "email": "maria.compradora@empresa.com.br",
+      "role": "Contratante",
+      "order": 1,
+      "notificationChannel": "Email",
+      "signatureType": "Click",
+      "formTitle": "Dados do comprador",
+      "formFields": [
+        {
+          "type": "Others",
+          "name": "Centro de custo",
+          "fieldType": "Text",
+          "max": 20,
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Joao Fornecedor",
+      "email": "joao@fornecedor.com.br",
+      "phone": "5511999999999",
+      "role": "Contratada",
+      "order": 2,
+      "notificationChannel": "Whatsapp",
+      "authenticationChannel": "SMS",
+      "doubleAuthentication": true,
+      "signatureType": "Draw",
+      "signatures": [
+        {
+          "printSignature": true,
+          "positions": [
+            { "page": 1, "coordenateX": "10.50%", "coordenateY": "80.00%" },
+            { "page": 12, "coordenateX": "10.50%", "coordenateY": "65.30%" }
+          ]
+        }
+      ],
+      "attachments": [
+        {
+          "name": "RG ou CNH",
+          "description": "Documento de identidade com foto, frente e verso.",
+          "fileType": ["jpg", "png", "pdf"],
+          "filesAllowed": 2,
+          "required": true
+        },
+        {
+          "name": "Selfie",
+          "description": "Local iluminado, rosto e orelhas visíveis.",
+          "fileType": ["jpg", "png"],
+          "filesAllowed": 1,
+          "inputAttachment": ["CameraSideFront"],
+          "required": true
+        }
+      ]
+    }
+  ],
+  "metadata": [
+    { "key": "SAP_SYSTEM", "value": "S4PRD" },
+    { "key": "SAP_OBJECT_TYPE", "value": "PURCHASE_ORDER" },
+    { "key": "SAP_OBJECT_KEY", "value": "4500001234" }
+  ]
+}

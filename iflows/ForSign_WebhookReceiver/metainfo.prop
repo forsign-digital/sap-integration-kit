@@ -1,0 +1,2 @@
+#Store metainfo properties
+description=Recebe webhooks do ForSign, valida HMAC-SHA256 e encaminha o evento canonico ao endpoint SAP.

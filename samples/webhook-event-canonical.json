@@ -1,0 +1,28 @@
+{
+  "event": "DocumentReady",
+  "success": true,
+  "operationId": "a1b2c3d4-0000-0000-0000-000000000000",
+  "externalId": "S4-4500001234",
+  "operationName": "Contrato de Fornecimento 4500001234",
+  "status": 5,
+  "occurredAt": "2026-07-16T09:30:00",
+  "documents": [
+    {
+      "documentId": "d1e2f3a4-0000-0000-0000-000000000000",
+      "fileName": "contrato-4500001234.pdf",
+      "totalPages": 12
+    }
+  ],
+  "members": [
+    { "name": "Maria Compradora", "email": "maria.compradora@empresa.com.br" },
+    { "name": "Joao Fornecedor", "email": "joao@fornecedor.com.br" }
+  ],
+  "metadata": [
+    { "key": "SAP_SYSTEM", "value": "S4PRD" },
+    { "key": "SAP_OBJECT_TYPE", "value": "PURCHASE_ORDER" },
+    { "key": "SAP_OBJECT_KEY", "value": "4500001234" }
+  ],
+  "forsign": {
+    "_comment": "Payload original completo do webhook ForSign (WebhookData) preservado aqui."
+  }
+}

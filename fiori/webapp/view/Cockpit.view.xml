@@ -1,0 +1,85 @@
+<mvc:View
+    controllerName="digital.forsign.cockpit.controller.Cockpit"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    displayBlock="true">
+    <f:DynamicPage id="page" headerExpanded="true">
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+                    <Title text="{i18n>appTitle}"/>
+                </f:heading>
+                <f:snappedContent>
+                    <Text text="{status>/operation/name}"/>
+                </f:snappedContent>
+            </f:DynamicPageTitle>
+        </f:title>
+        <f:header>
+            <f:DynamicPageHeader pinnable="false">
+                <HBox alignItems="End" wrap="Wrap">
+                    <VBox class="sapUiSmallMarginEnd">
+                        <Label text="{i18n>operationIdLabel}" labelFor="operationIdInput"/>
+                        <Input id="operationIdInput" width="14rem" type="Number"
+                               placeholder="4821" submit=".onLoadOperation"/>
+                    </VBox>
+                    <Button text="{i18n>loadButton}" type="Emphasized"
+                            icon="sap-icon://search" press=".onLoadOperation"/>
+                </HBox>
+            </f:DynamicPageHeader>
+        </f:header>
+        <f:content>
+            <VBox id="resultBox" visible="{= !!${status>/operation} }">
+                <ObjectHeader
+                    title="{status>/operation/name}"
+                    number="{status>/operation/progressCurrent} / {status>/operation/progressTotal}"
+                    numberUnit="{i18n>signaturesUnit}">
+                    <statuses>
+                        <ObjectStatus
+                            text="{status>/operation/status}"
+                            state="{path: 'status>/operation/status', formatter: '.formatStatusState'}"/>
+                    </statuses>
+                    <attributes>
+                        <ObjectAttribute title="{i18n>createdAt}" text="{status>/operation/createdAt}"/>
+                        <ObjectAttribute title="{i18n>expiresAt}" text="{status>/operation/expirationDate}"/>
+                        <ObjectAttribute title="{i18n>completedAt}" text="{status>/operation/completedAt}"/>
+                    </attributes>
+                </ObjectHeader>
+
+                <Table id="membersTable" items="{status>/members}" class="sapUiSmallMarginTop">
+                    <headerToolbar>
+                        <OverflowToolbar>
+                            <Title text="{i18n>membersTitle}"/>
+                            <ToolbarSpacer/>
+                            <Button icon="sap-icon://download" text="{i18n>downloadButton}"
+                                    press=".onDownloadDocument"
+                                    enabled="{= ${status>/operation/status} === 'Completed' }"/>
+                            <Button icon="sap-icon://refresh" press=".onLoadOperation"/>
+                        </OverflowToolbar>
+                    </headerToolbar>
+                    <columns>
+                        <Column><Text text="{i18n>colName}"/></Column>
+                        <Column><Text text="{i18n>colEmail}"/></Column>
+                        <Column hAlign="Center" width="6rem"><Text text="{i18n>colOrder}"/></Column>
+                        <Column><Text text="{i18n>colRole}"/></Column>
+                        <Column><Text text="{i18n>colStatus}"/></Column>
+                        <Column><Text text="{i18n>colCompletedAt}"/></Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <Text text="{status>name}"/>
+                                <Text text="{status>email}"/>
+                                <Text text="{status>order}"/>
+                                <Text text="{= ${status>observer} ? ${i18n>observerRole} : (${status>role} || '') }"/>
+                                <ObjectStatus text="{status>status}"
+                                              state="{path: 'status>status', formatter: '.formatMemberState'}"/>
+                                <Text text="{status>completedAt}"/>
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </VBox>
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>

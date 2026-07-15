@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ForSign Signature Cockpit</title>
+    <script id="sap-ui-bootstrap"
+            src="https://ui5.sap.com/1.120.0/resources/sap-ui-core.js"
+            data-sap-ui-theme="sap_horizon"
+            data-sap-ui-libs="sap.m,sap.f"
+            data-sap-ui-compatVersion="edge"
+            data-sap-ui-async="true"
+            data-sap-ui-resourceroots='{"digital.forsign.cockpit": "./"}'>
+    </script>
+    <script>
+        sap.ui.getCore().attachInit(function () {
+            sap.ui.require(["sap/ui/core/ComponentContainer"], function (ComponentContainer) {
+                new ComponentContainer({
+                    name: "digital.forsign.cockpit",
+                    settings: { id: "cockpit" },
+                    async: true
+                }).placeAt("content");
+            });
+        });
+    </script>
+</head>
+<body class="sapUiBody" id="content"></body>
+</html>

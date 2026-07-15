@@ -1,0 +1,3 @@
+#ForSign SAP Integration Kit - parametros externalizados
+ForSign_BaseUrl=https\://api.forsign.digital
+ForSign_RequestTimeout=60000

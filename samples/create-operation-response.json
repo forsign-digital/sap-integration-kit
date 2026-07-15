@@ -1,0 +1,51 @@
+{
+  "operationId": 4821,
+  "externalId": "S4-4500001234",
+  "status": "InProgress",
+  "members": [
+    {
+      "id": 99200,
+      "name": "Ana Observadora",
+      "email": "compras@empresa.com.br",
+      "order": 0,
+      "observer": true,
+      "signUrl": null,
+      "shortSignUrl": null
+    },
+    {
+      "id": 99201,
+      "name": "Maria Compradora",
+      "email": "maria.compradora@empresa.com.br",
+      "order": 1,
+      "observer": false,
+      "signUrl": "https://app.forsign.digital/sign/aBc123.../2026-07-15T10:00:00.0000000",
+      "shortSignUrl": "https://fsign.app/aBc123"
+    },
+    {
+      "id": 99202,
+      "name": "Joao Fornecedor",
+      "email": "joao@fornecedor.com.br",
+      "order": 2,
+      "observer": false,
+      "signUrl": "",
+      "shortSignUrl": ""
+    }
+  ],
+  "documents": [
+    {
+      "documentId": 1,
+      "definitiveDocumentId": "9f2e51d0-7a44-4c3a-b1e6-2d8c0f5a7b31",
+      "name": "contrato-4500001234.pdf",
+      "description": "Contrato de fornecimento aprovado no pedido 4500001234"
+    }
+  ],
+  "forsign": {
+    "_comment": "Operação completa retornada pelo ForSign (data.data de POST /api/v1/operation) preservada aqui.",
+    "_notas": [
+      "operationId (id) é numérico e sequencial por conta — use em status, download, cancelar e completar.",
+      "documents[].documentId (files[].id) é o {documentId} do download-base64.",
+      "members[].signUrl vazio = ainda não é a vez do assinante (operação sequencial).",
+      "members[].id é o memberId dos endpoints de anexos (/api/v2/attachment/member/{memberId})."
+    ]
+  }
+}

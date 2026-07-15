@@ -1,0 +1,103 @@
+{
+  "info": {
+    "name": "ForSign SAP Integration Kit (CPI)",
+    "description": "Endpoints expostos pelos iFlows do kit no SAP Integration Suite. Configure as variáveis de coleção: cpi_base_url (ex.: https://<runtime>.it-cpi001.cfapps.br10.hana.ondemand.com/http), cpi_user e cpi_password (service key da instância de runtime).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "basic",
+    "basic": [
+      { "key": "username", "value": "{{cpi_user}}", "type": "string" },
+      { "key": "password", "value": "{{cpi_password}}", "type": "string" }
+    ]
+  },
+  "variable": [
+    { "key": "cpi_base_url", "value": "https://SEU-RUNTIME.it-cpi001.cfapps.br10.hana.ondemand.com/http" },
+    { "key": "cpi_user", "value": "" },
+    { "key": "cpi_password", "value": "" },
+    { "key": "operationId", "value": "4821" },
+    { "key": "documentId", "value": "1" }
+  ],
+  "item": [
+    {
+      "name": "1. Criar operação",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "if (pm.response.code === 200) {",
+              "    const body = pm.response.json();",
+              "    pm.collectionVariables.set('operationId', body.operationId);",
+              "    if (body.documents && body.documents.length > 0) {",
+              "        pm.collectionVariables.set('documentId', body.documents[0].documentId);",
+              "    }",
+              "    console.log('operationId salvo:', body.operationId);",
+              "}"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": { "raw": "{{cpi_base_url}}/forsign/v1/operations", "host": ["{{cpi_base_url}}"], "path": ["forsign", "v1", "operations"] },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"externalId\": \"S4-4500001234\",\n  \"name\": \"Contrato de Fornecimento 4500001234\",\n  \"language\": \"pt-br\",\n  \"sequentialSigning\": true,\n  \"mergeIfExists\": true,\n  \"document\": {\n    \"fileName\": \"contrato-4500001234.pdf\",\n    \"contentBase64\": \"<PDF_EM_BASE64>\"\n  },\n  \"signers\": [\n    {\n      \"name\": \"Maria Compradora\",\n      \"email\": \"maria.compradora@empresa.com.br\",\n      \"order\": 1,\n      \"signatureType\": \"Click\"\n    },\n    {\n      \"name\": \"Joao Fornecedor\",\n      \"email\": \"joao@fornecedor.com.br\",\n      \"phone\": \"5511999999999\",\n      \"order\": 2,\n      \"signatureType\": \"Draw\",\n      \"signatures\": [\n        {\n          \"printSignature\": true,\n          \"positions\": [ { \"page\": 1, \"coordenateX\": \"10.50%\", \"coordenateY\": \"80.00%\" } ]\n        }\n      ]\n    }\n  ],\n  \"metadata\": [ { \"key\": \"SAP_OBJECT_KEY\", \"value\": \"4500001234\" } ]\n}"
+        },
+        "description": "Faz upload + criação em uma chamada. O test script salva operationId e documentId nas variáveis da coleção. Payload completo (anexos, formulários, observer) em samples/create-operation-request.json."
+      }
+    },
+    {
+      "name": "2. Consultar status",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{cpi_base_url}}/forsign/v1/operations/status?operationId={{operationId}}",
+          "host": ["{{cpi_base_url}}"],
+          "path": ["forsign", "v1", "operations", "status"],
+          "query": [{ "key": "operationId", "value": "{{operationId}}" }]
+        },
+        "description": "Status da operação e progresso por assinante. Enums como string (WaitingSignatures, Completed...)."
+      }
+    },
+    {
+      "name": "3. Baixar documento assinado",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{cpi_base_url}}/forsign/v1/operations/download?operationId={{operationId}}&documentId={{documentId}}",
+          "host": ["{{cpi_base_url}}"],
+          "path": ["forsign", "v1", "operations", "download"],
+          "query": [
+            { "key": "operationId", "value": "{{operationId}}" },
+            { "key": "documentId", "value": "{{documentId}}" }
+          ]
+        },
+        "description": "Chame após o webhook DocumentReady. Retorna { fileName, contentType, base64Content }."
+      }
+    },
+    {
+      "name": "4. Simular webhook ForSign (teste do receiver)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          {
+            "key": "X-ForSign-Signature",
+            "value": "sha256=<HMAC_SHA256_HEX_DO_BODY>",
+            "description": "Calcule com o secret do webhook: echo -n '<body>' | openssl dgst -sha256 -hmac '<secret>'"
+          }
+        ],
+        "url": { "raw": "{{cpi_base_url}}/forsign/v1/webhook", "host": ["{{cpi_base_url}}"], "path": ["forsign", "v1", "webhook"] },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"action\": 5,\n  \"actionDescription\": \"DocumentReady\",\n  \"success\": true,\n  \"createdAt\": \"2026-07-16T09:30:00\",\n  \"data\": {\n    \"operationCompanyId\": 4821,\n    \"externalId\": \"S4-4500001234\",\n    \"name\": \"Contrato de Fornecimento 4500001234\",\n    \"status\": 5,\n    \"files\": [ { \"id\": 1, \"originalName\": \"contrato-4500001234.pdf\", \"totalPages\": 12 } ],\n    \"members\": [ { \"name\": \"Maria Compradora\", \"email\": \"maria.compradora@empresa.com.br\" } ],\n    \"metadata\": [ { \"key\": \"SAP_OBJECT_KEY\", \"value\": \"4500001234\" } ]\n  }\n}"
+        },
+        "description": "Simula o ForSign chamando o receiver. Sem assinatura HMAC válida, a resposta é 401 (comportamento esperado)."
+      }
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+#ForSign SAP Integration Kit - parametros externalizados
+ForSign_RequestTimeout=60000
+SAP_Target_Endpoint=https\://sap.example.com/forsign/events
+SAP_Target_CredentialName=SAP_Target_Basic

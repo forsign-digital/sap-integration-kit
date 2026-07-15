@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: ForSign Create Operation
+Bundle-SymbolicName: ForSign_CreateOperation; singleton:=true
+Bundle-Version: 1.0.0
+SAP-BundleType: IntegrationFlow
+SAP-NodeType: IFLMAP
+SAP-RuntimeProfile: iflmap
+Import-Package: com.sap.gateway.ip.core.customdev.util,com.sap.it.api.
+ securestore,com.sap.it.api;version="1.1.0",org.apache.camel;version="
+ 2.8",org.apache.camel.builder;version="2.8",org.apache.camel.model;ve
+ rsion="2.8",org.apache.camel.processor;version="2.8",org.apache.camel
+ .processor.aggregate;version="2.8",org.apache.camel.spring.spi;versio
+ n="2.8",com.sap.esb.camel.security.cms,org.apache.camel.spi,com.sap.e
+ sb.webservice.audit.log,com.sap.esb.camel.endpoint.configurator.api,c
+ om.sap.esb.camel.jdbc.idempotency.reorg,javax.sql,org.apache.camel.co
+ mponent.jdbc,org.apache.camel.processor.idempotent.jdbc,org.osgi.serv
+ ice.blueprint,com.sap.it.rt.adapter.http.api.exception,com.sap.esb.se
+ curity,javax.xml.datatype,org.osgi.framework;version="1.6.0"
+Origin-Bundle-Name: ForSign Create Operation
+Origin-Bundle-SymbolicName: ForSign_CreateOperation

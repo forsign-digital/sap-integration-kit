@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<parameters>
+    <param_references/>
+    <additional_param_metadata>
+        <parameter_metadata>
+            <Name>ForSign_RequestTimeout</Name>
+            <Type>xsd:string</Type>
+            <isCustomType>false</isCustomType>
+        </parameter_metadata>
+        <parameter_metadata>
+            <Name>SAP_Target_Endpoint</Name>
+            <Type>xsd:string</Type>
+            <isCustomType>false</isCustomType>
+        </parameter_metadata>
+        <parameter_metadata>
+            <Name>SAP_Target_CredentialName</Name>
+            <Type>xsd:string</Type>
+            <isCustomType>false</isCustomType>
+        </parameter_metadata>
+    </additional_param_metadata>
+</parameters>

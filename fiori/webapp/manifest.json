@@ -1,0 +1,37 @@
+{
+  "_version": "1.58.0",
+  "sap.app": {
+    "id": "digital.forsign.cockpit",
+    "type": "application",
+    "title": "ForSign Signature Cockpit",
+    "description": "Acompanhe operações de assinatura ForSign sem sair do SAP",
+    "applicationVersion": { "version": "1.0.0" },
+    "dataSources": {}
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "deviceTypes": { "desktop": true, "tablet": true, "phone": true }
+  },
+  "sap.ui5": {
+    "rootView": {
+      "viewName": "digital.forsign.cockpit.view.Cockpit",
+      "type": "XML",
+      "id": "app",
+      "async": true
+    },
+    "dependencies": {
+      "minUI5Version": "1.108.0",
+      "libs": { "sap.m": {}, "sap.ui.core": {}, "sap.f": {} }
+    },
+    "contentDensities": { "compact": true, "cozy": true },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": { "bundleName": "digital.forsign.cockpit.i18n.i18n" }
+      }
+    },
+    "config": {
+      "forsignCpiBaseUrl": "/forsign-cpi"
+    }
+  }
+}

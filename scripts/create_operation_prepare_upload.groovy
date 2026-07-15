@@ -7,7 +7,7 @@
  *   { "fileName": "...", "content": "<base64>" }
  *
  * Payload canônico (ver samples/create-operation-request.json e
- * https://api.forsign.digital -> /docs/operacoes/criar):
+ * https://docs.forsign.digital/docs/operacoes/criar):
  *   {
  *     "externalId": "S4-4500001234",
  *     "name": "Contrato 4500001234",

@@ -94,7 +94,7 @@ python3 ci/validate_kit.py   # structural validation
 
 - Bugs and feature requests: [GitHub Issues](https://github.com/forsign-digital/sap-integration-kit/issues)
 - ForSign API support: [help@forsign.digital](mailto:help@forsign.digital)
-- API documentation: [https://api.forsign.digital](https://api.forsign.digital)
+- API documentation: [https://docs.forsign.digital](https://docs.forsign.digital)
 
 ## License
 
